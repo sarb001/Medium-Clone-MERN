@@ -7,10 +7,27 @@ const UsereditRoute = require('./Routes/UserRoute');
 const Postuser = require('./Routes/PostRoute');          // Give Routes Only 
 
 const Categoryroute = require('./Routes/categories');
+const multer = require('multer');
+
 
 app.use(express.json());
 const PORT = process.env.PORT || 5000;
 connectdb;
+
+const storage = multer.diskStorage({
+    destination  : (req,file,cb) => {
+        cb(null,"images");
+    },
+    filename  : (req, file,cb) => {
+        cb(null, 'hello.jpeg');
+    }
+});
+
+const upload = multer({storage : storage});
+app.post('/api/upload' , upload.single('file') , (req,res) => {
+    res.status(200).json(" File has been Uploaded ");
+})
+
 
 app.get('/' , () => { console.log('Main page') });
 

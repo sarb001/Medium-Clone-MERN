@@ -13,7 +13,6 @@ router.post("/", async (req, res) => {
     }
   });
 
-
   // Get All category 
   router.get("/", async (req, res) => {
     try {

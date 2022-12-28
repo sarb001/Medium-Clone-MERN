@@ -1,9 +1,10 @@
 const router =   require('express').Router();
 const User   =   require('../Modules/User');
+const Post   =   require('../Modules/Post');
 const bcrypt =   require('bcrypt');
 
 
-// Second Step          // now registed user has power to  edit delete 
+// Second Step          // now registed user has power to  edit delete and..
 
 
 // update the user now Registered 
@@ -43,6 +44,7 @@ router.delete('/:id' , async(req,res) => {
         try{
             const user = await User.findById(req.params.id);
                 try{
+                     await Post.deleteMany({username : user.username });        // if user wants to get deleted , remove all his posts as well 
                      await User.findByIdAndDelete(req.params.id);    
                     res.status(200).json(' User has been Deleted ...... ');
                     }catch(err)
