@@ -24,4 +24,5 @@ const useregister = new Schema({
     
 },{ timestamps : true})
 
+
 module.exports = mongoose.model('useregister',useregister);
