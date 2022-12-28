@@ -2,6 +2,8 @@ const router = require('express').Router();
 const User   = require('../Modules/User');
 const bcrypt = require('bcrypt');
 
+// Here we can register and login   // First Step 
+
 router.post('/register' , async (req,res) => {
     try{
         const salt = await bcrypt.genSalt(10);

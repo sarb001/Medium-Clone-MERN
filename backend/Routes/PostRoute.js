@@ -1,6 +1,11 @@
 const router =   require('express').Router();
 const Post   =   require('../Modules/Post');
 
+
+// Now the Third Step is that User can  Create Post , Edit that post , Delete it , 
+// get Specific Post and others 
+
+
 // Create Post
 router.post('/' , async(req,res) => {
     const newpost =  new Post(req.body);
@@ -60,6 +65,44 @@ router.delete('/:id' , async(req,res) => {
         }
 
     }catch(err){
+        res.status(400).json(err);
+    }
+})
+
+// Get Post 
+router.get('/:id' , async (req,res) => {
+    try{
+        const getuser = await Post.findById(req.params.id);       //find id 
+         res.status(200).json(getuser);
+    }catch(err)
+    {
+        res.status(500).json(err);
+    }
+})
+
+// Get All POsts 
+router.get('/' , async (req,res) => {
+    
+    const username = req.query.user;           // http://.../posts?
+    const catname  = req.query.cat;            // http://.../posts?
+
+    try{
+        let posts ;
+        if(username){                       // find by username     // https://../posts?user=milli
+            posts = await Post.find({ username });
+        }else if(catname)                    // by catname          // https://../posts?cat=music
+        {   
+            posts = await Post.find({
+                categories :  {
+                    $in : [catname]
+                }
+            });
+        }else{
+            posts = await  Post.find();     //find all 
+        }
+        res.status(200).json(posts);
+    }catch(err)
+    {
         res.status(400).json(err);
     }
 })

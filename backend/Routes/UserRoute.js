@@ -2,6 +2,10 @@ const router =   require('express').Router();
 const User   =   require('../Modules/User');
 const bcrypt =   require('bcrypt');
 
+
+// Second Step          // now registed user has power to  edit delete 
+
+
 // update the user now Registered 
 router.put('/:id',  async (req,res) => {
         if(req.body.userid === req.params.id)
