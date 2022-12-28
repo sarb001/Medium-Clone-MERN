@@ -16,6 +16,10 @@ const useregister = new Schema({
     password : { 
          type : String ,
          required : true , 
+    },
+    profilepic : {
+        type : String ,
+        default : ""
     }
     
 },{ timestamps : true})
