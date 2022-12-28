@@ -1,5 +1,5 @@
 const router =   require('express').Router();
-const User   =   require('../Modules/Auth');
+const User   =   require('../Modules/User');
 const bcrypt =   require('bcrypt');
 
 // update the user now Registered 
@@ -53,6 +53,18 @@ router.delete('/:id' , async(req,res) => {
       else{
           res.status(401).json(' You can only delete your Acount !!!! ');
        }
+})
+
+// Get Specific User 
+router.get('/:id' , async (req,res) => {
+    try{
+        const getuser = await User.findById(req.params.id);       //find id 
+        const { password , ...others } = getuser._doc;
+        res.status(200).json(others);
+    }catch(err)
+    {
+        res.status(500).json(err);
+    }
 })
 
 module.exports = router;
