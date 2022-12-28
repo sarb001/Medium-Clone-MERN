@@ -31,7 +31,7 @@ router.put('/:id' , async(req,res) => {                     // username is Uniqu
              }
         }else
         {
-            res.status(401).json(' You can only edit your Account !!!!! ');
+            res.status(401).json(' You can only edit your Post !!!!! ');
         }
 
     }catch(err)
@@ -40,5 +40,28 @@ router.put('/:id' , async(req,res) => {                     // username is Uniqu
     }
 })
 
+// Delete the Post 
+router.delete('/:id' , async(req,res) => {
+
+    try{
+        const post = await Post.findById(req.params.id);
+        if(post.username === req.body.username)
+        {   
+             try
+             {
+                    await post.deleteOne();
+                    res.status(200).json(' Post has been Deleted ');
+             }catch(err){
+                res.status(400).json(err);
+             }
+        }
+        else{
+            res.status(401).json(' You can only Delete your Post !!!!! ');
+        }
+
+    }catch(err){
+        res.status(400).json(err);
+    }
+})
 
 module.exports = router;
