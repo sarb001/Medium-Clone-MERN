@@ -14,6 +14,7 @@ app.use(express.json());
 const PORT = process.env.PORT || 5000;
 connectdb;
 
+// For Uploading File 
 const storage = multer.diskStorage({
     destination  : (req,file,cb) => {
         cb(null,"images");
