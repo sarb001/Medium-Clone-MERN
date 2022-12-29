@@ -29,11 +29,10 @@ app.post('/api/upload' , upload.single('file') , (req,res) => {
     res.status(200).json(" File has been Uploaded ");
 })
 
+// app.get('/' , () => { console.log('Main page') });
 
-app.get('/' , () => { console.log('Main page') });
-
-app.use('/api' ,        UserRoute);                    // For Normal Route 
-app.use('/api/users' ,  UsereditRoute);                // For Users 
+app.use('/api/auth' ,   UserRoute);                           // For Normal Route 
+app.use('/api/users' ,  UsereditRoute);                      // For Users 
 
 // For Specific User Actions 
 app.use('/api/posts' ,  Postuser);     
@@ -43,5 +42,6 @@ app.use('/api/category' , Categoryroute);
 
 
 
-app.listen(PORT, (req,res) => { console.log(`App is running in PORT ${PORT}`)   ; 
+app.listen(PORT, (req,res) => { 
+    console.log(`App is running in PORT ${PORT}`)   ; 
 })
