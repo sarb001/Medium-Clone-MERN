@@ -72,7 +72,7 @@ router.delete('/:id' , async(req,res) => {
 // Get Post 
 router.get('/:id' , async (req,res) => {
     try{
-        const getuser = await Post.findById(req.params.id);       //find id 
+         const getuser = await Post.findById(req.params.id);        //find id 
          res.status(200).json(getuser);
     }catch(err)
     {
