@@ -47,7 +47,8 @@ router.post('/login' , async (req,res) => {
              }
     }catch(err)
     {
-        res.status(400).json(' User not Found !!!!!!! ');
+        // res.status(400).json(' User not Found !!!!!!! ');
+        console.log(err);
     }
 })
 
