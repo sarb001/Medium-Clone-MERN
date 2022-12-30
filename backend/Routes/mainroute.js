@@ -43,7 +43,7 @@ router.post('/login' , async (req,res) => {
 
              }else
              {
-                res.status(400).json(' User not Found ');
+                res.status(404).json(' User found but pass not Match  ');
              }
     }catch(err)
     {

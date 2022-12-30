@@ -1,7 +1,7 @@
 const express = require('express');
 const connectdb = require('./Connection/db');
 const app = express();
-
+const path = require('path');
 const UserRoute = require('./Routes/mainroute');
 const UsereditRoute = require('./Routes/UserRoute');
 const Postuser = require('./Routes/PostRoute');          // Give Routes Only 
@@ -9,8 +9,8 @@ const Postuser = require('./Routes/PostRoute');          // Give Routes Only
 const Categoryroute = require('./Routes/categories');
 const multer = require('multer');
 
-
 app.use(express.json());
+app.use('/images',express.static(path.join(__dirname,"/images")));      // make Path public 
 const PORT = process.env.PORT || 5000;
 connectdb;
 
